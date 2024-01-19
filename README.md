@@ -12,7 +12,9 @@
 #### Usually, The Web Chart is implemented in FrontEnd and The Chart source is provided at the BackEnd.
 #### From the developer's point of view, behavior such as DB connection, Data preprocessing, and Modeling must be developed from BackEnd with Python and Web chart visualization should have been developed from FrontEnd with Javascript(e.g. chart.js). But Plotly & Dash can be visualized based on the web only with Python, without having to use two languages. So, the results of Data analysis or Modeling implemented in Python can be viewed as they are.
 
+#### This dashboard allows applications to be configured by combining different chart layouts, because it increases the maintenance of code in large applications and makes each layout easier to work with individually.(Modularization)
 ### About 📈[Plotly](https://github.com/plotly/plotly.py)
-#### - Graphy library made of Python can replace matplotlib's functionality<br>#### - Supports variety of chart formats & Modern and Interactive graph<br>#### - Open Source of MIT License<br>
+#### - Graphy library made of Python can replace matplotlib's functionality<br> - Supports variety of chart formats & Modern and Interactive graph<br> - Open Source of MIT License<br>
 ### About 📋[Dash](https://github.com/plotly/dash)  
-#### - Library to develop Web Services based on Plotly can replace Flask+matplotlib(compatible with Python, R, Julia)<br>#### - Low-code framework for rapidly building data apps<br>#### - Open Source of MIT License<br>
+#### - Library to develop Web Services based on Plotly can replace Flask+matplotlib(compatible with Python, R, Julia)<br> - Low-code framework for rapidly building data apps<br> - Open Source of MIT License<br>
+---
