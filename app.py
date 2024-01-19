@@ -2,6 +2,7 @@ import dash
 from dash import html
 from graph.graph1 import graph1
 from graph.graph2 import graph2
+from graph.graph3 import app as graph
 import plotly.express as px
 
 # Iris dataset
@@ -14,7 +15,9 @@ app = dash.Dash(__name__)
 app.layout = html.Div([
     html.H1("Iris Dataset Dashboard", style={'text-align': 'center'}),
     graph1(iris_data),
-    graph2(iris_data)
+    graph2(iris_data),
+    #graph.layout
+    
 ])
 
 # Run the app
