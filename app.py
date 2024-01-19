@@ -1,30 +1,23 @@
-#!/usr/bin/python
-# -*- coding: <encoding name> -*-
-
-from dash import Dash, html, dcc
+import dash
+from dash import html
+from graph.graph1 import graph1
+from graph.graph2 import graph2
 import plotly.express as px
-import pandas as pd
 
-df = px.data.iris() # iris data 불러오기
-# plotly를 이용한 산점도
-fig = px.scatter(df, x="sepal_length", y="sepal_width", 
-                  color="species")
+# Iris dataset
+iris_data = px.data.iris()
 
-app = Dash(__name__)
-# app layout: html과 dcc 모듈을 이용
-app.layout = html.Div(children=[
-    # Dash HTML Components module로 HTML 작성 
-    html.H1(children='첫번째 Dash 연습'),
-    html.Div(children='''
-        대시를 이용하여 웹어플리케이션 작성 연습...
-    '''),
-    # dash.core.component(dcc)의 그래프 컴포넌트로 plotly 그래프 렌더링
-    dcc.Graph(
-        id='graph1',
-        figure=fig
-    )
+# Dash application
+app = dash.Dash(__name__)
+
+# graph of the dashboard
+app.layout = html.Div([
+    html.H1("Iris Dataset Dashboard", style={'text-align': 'center'}),
+    graph1(iris_data),
+    graph2(iris_data)
 ])
 
+# Run the app
 if __name__ == '__main__':
     app.run_server(debug=True)
     #app.run_server(debug=False, host='0.0.0.0', port=8888)
