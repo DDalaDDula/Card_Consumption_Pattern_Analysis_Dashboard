@@ -17,4 +17,4 @@ def graph1(iris_data):
             figure=px.box(iris_data, x='species', y='petal_width', title='Box Plot'),
             config={'displayModeBar': False}  # Hide the modebar
         ),
-    ], style={'display': 'flex', 'justify-content': 'center'})
+    ], style={'display': 'flex', 'justify-content': 'center', "backgroundColor": "#353535", "color": "#ffffff"})
