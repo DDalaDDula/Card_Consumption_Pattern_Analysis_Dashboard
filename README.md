@@ -1,4 +1,4 @@
-## 📈Spending Pattern Dashboard📋
+## 📈Card Consumption Pattern Analysis Dashboard📋
 ### Project : Data Visualization Dashboard with 📈[Plotly](https://github.com/plotly/plotly.py) & 📋[Dash](https://github.com/plotly/dash)
 ### DATASET : 📂Card spending data
 ### 🐍Conda Virtual Environment
