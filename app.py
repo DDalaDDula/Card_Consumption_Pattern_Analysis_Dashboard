@@ -8,11 +8,12 @@ from graph.graph1 import graph1
 from graph.graph2 import graph2
 from graph.graph3 import app as graph
 import plotly.express as px
+import markdown2
 
 # Iris dataset
 iris_data = px.data.iris()
 
-app = dash.Dash("Card Consumption Pattern Analysis Dashboard", external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, '/styles/nav.css'])
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -23,7 +24,8 @@ SIDEBAR_STYLE = {
     "width": "16rem",
     "padding": "2rem 1rem",
     "backgroundColor": "#353535",
-    "color": "#ffffff"
+    "color": "#ffffff",
+    "-webkit-text-stroke-width": "thick"
 }
 
 # add some padding.
@@ -33,18 +35,23 @@ CONTENT_STYLE = {
     "padding": "2rem 1rem",
 }
 
+navlink_style = {
+    "color": "#ffffff",
+    "margin-top": "1rem",
+    "font-size": "1.3rem",
+}
 sidebar = html.Div(
     [
-        html.H5("📋Dashboard", className="5"),
-        html.Hr(),
+        html.H3("📋Dashboard", className="3"),
         html.P(
             "Card Consumption Pattern Analysis", className="lead"
         ),
+        html.Hr(),
         dbc.Nav(
             [
-                dbc.NavLink("서울특별시 중구", href="/", active="exact"),
-                dbc.NavLink("경기도 동두천시", href="/page-1", active="exact"),
-                dbc.NavLink("전라남도 나주시", href="/page-2", active="exact"),
+                dbc.NavLink("서울특별시", href="/jg", active="exact", style=navlink_style),
+                dbc.NavLink("경기도", href="/ddc", active="exact", style=navlink_style),
+                dbc.NavLink("전라남도", href="/nj", active="exact", style=navlink_style),
             ],
             vertical=True,
             pills=True,
@@ -54,31 +61,30 @@ sidebar = html.Div(
 )
 
 content = html.Div(id="page-content", style=CONTENT_STYLE)
-
 app.layout = html.Div([dcc.Location(id="url"), sidebar, content], style={"backgroundColor": "#353535", "color": "#ffffff"})
 
+# Read README file
+with open("README.md", "r", encoding="utf-8") as readme_file:
+    readme_content = readme_file.read()
+    
+# Markdown to HTML function
+def markdown_to_html(markdown_text):
+    return dcc.Markdown(children=markdown_text)
 
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
-    if pathname == "/":
+    if pathname == "/jg":
         return html.Div([
                 html.H1("Card Consumption Pattern Analysis Dashboard", style={'text-align': 'center'}),
                 graph1(iris_data),
         ])
-    elif pathname == "/page-1":
+    elif pathname == "/ddc":
         return html.P("This is the content of page 1. Yay!")
-    elif pathname == "/page-2":
+    elif pathname == "/nj":
         return html.P("Oh cool, this is page 2!")
-    # If the user tries to reach a different page, return a 404 message
-    return html.Div(
-        [
-            html.H1("404: Not found", className="text-danger"),
-            html.Hr(),
-            html.P(f"The pathname {pathname} was not recognised..."),
-        ],
-        className="p-3 bg-light rounded-3",
-    )
 
+    # basic page setting(readme)
+    return markdown_to_html(readme_content)
 
 if __name__ == "__main__":
     app.run_server(debug=True)

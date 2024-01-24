@@ -14,7 +14,11 @@
 
 #### **Modularization** : This dashboard is implemented by combining different chart components. Modularization increases the maintenance of code in large applications and makes each component easier to work with individually.
 ### About 📈[Plotly](https://github.com/plotly/plotly.py)
-#### - Graphy library made of Python can replace matplotlib's functionality<br> - Supports variety of chart formats & Modern and Interactive graph<br> - Open Source of MIT License<br>
+#### - Graphy library made of Python can replace matplotlib's functionality
+#### - Supports variety of chart formats & Modern and Interactive graph
+#### - Open Source of MIT License
 ### About 📋[Dash](https://github.com/plotly/dash)  
-#### - Library to develop Web Services based on Plotly can replace Flask+matplotlib<br> - Low-code framework for rapidly building data apps<br> - Open Source of MIT License<br>
+#### - Library to develop Web Services based on Plotly can replace Flask+matplotlib 
+#### - Low-code framework for rapidly building data apps
+####  - Open Source of MIT License
 ---
