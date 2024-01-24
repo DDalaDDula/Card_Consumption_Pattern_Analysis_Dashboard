@@ -1,0 +1,27 @@
+.nav-link.active {
+    background-color: #303030 !important;
+}
+.hljs.language-undefined {
+    background-color: #303030;
+    color: white;
+    border-radius: 1rem;
+}
+.lead {
+    font-size: 1.6rem;
+    font-weight: 300;
+    white-space: pre-line;
+    margin-bottom: 2rem;
+}
+.main-svg > rect {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.main-svg:first-child {
+    background: #212121 !important;
+    border-radius: 1rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.2rem;
+}
