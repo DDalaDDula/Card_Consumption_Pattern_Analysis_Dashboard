@@ -23,8 +23,7 @@ SIDEBAR_STYLE = {
 
 # add some padding.
 CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "2rem",
+    "margin": "0rem 0rem -2rem 20rem",
     "padding": "2rem 1rem",
     "backgroundColor": "#191919",
 }

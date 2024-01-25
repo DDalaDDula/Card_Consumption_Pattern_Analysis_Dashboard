@@ -23,3 +23,11 @@
 #### - Low-code framework for rapidly building data apps
 ####  - Open Source of MIT License
 ---
+### Set up
+
+    git clone git@github.com:DDalaDDula/Card_Consumption_Pattern_Analysis_Dashboard.git
+    cd Card_Consumption_Pattern_Analysis_Dashboard
+
+### Quik start
+
+    python app.py
