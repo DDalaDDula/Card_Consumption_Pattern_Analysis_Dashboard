@@ -18,7 +18,7 @@
     margin-bottom: 2rem;
 }
 .main-svg:first-child {
-    background: #212121 !important;
+    background-color: #212121 !important;
     border-radius: 1rem;
 }
 h3 {
@@ -26,4 +26,17 @@ h3 {
 }
 h4 {
     font-size: 1.2rem;
+}
+.Select-value > .Select-value-label {
+    color: #ffffff !important;
+}
+.Select-menu-outer {
+    color: #ffffff;
+    left: 60.7rem;
+    top: 5.6rem;
+    z-index: 4;
+    border-radius: 0.5rem;
+    background-color: #191919;
+    border-width: 0.2rem;
+    border-color: #ffffff;
 }

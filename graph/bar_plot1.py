@@ -1,7 +1,7 @@
 from dash import html, dcc
 import plotly.express as px
 
-def generate_graph(df, selected_graph):
+def generate_graph(df, selected_graph, graph_style):
     # value_cnt 계산
     value_cnt = df['city_s'].value_counts()
     # 'city_s' 컬럼 값에 따른 'cost'의 합 계산
@@ -47,4 +47,4 @@ def generate_graph(df, selected_graph):
             figure=fig,
             config={'displayModeBar': False}  # Hide the modebar
         ),
-    ], style={'display': 'flex', 'flex-direction': 'column', 'justify-content': 'flex-start', 'align-items': 'center'})
+    ], style=graph_style)
