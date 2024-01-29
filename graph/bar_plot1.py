@@ -30,11 +30,14 @@ def generate_graph(df, selected_graph, graph_style):
     fig.update_layout(
         xaxis_title='Area',
         yaxis_title='Counts' if selected_graph == 'Counts' else 'Costs',
-        title='Number of payments' if selected_graph == 'Counts' else 'Payment amount',
+        title='Number of payments' if selected_graph == 'Counts' else 'Total cost',
         title_font=dict(family='Arial, sans-serif', size=20),  # 폰트 스타일
         width=1000,  # 그래프의 너비
         height=400,  # 그래프의 높이
         margin=dict(t=90),  # 그래프 상단 margin 조절
+        barmode='group',
+        uniformtext_minsize=8,
+        uniformtext_mode='hide',
         template='plotly_dark',  # 사용할 템플릿
         font=dict(
             family='Arial, sans-serif',  # 사용할 폰트 설정
@@ -46,5 +49,6 @@ def generate_graph(df, selected_graph, graph_style):
             id='bar-chart',
             figure=fig,
             config={'displayModeBar': False}  # Hide the modebar
+
         ),
     ], style=graph_style)

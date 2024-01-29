@@ -7,92 +7,41 @@ import pandas as pd
 import plotly.graph_objs as go
 import plotly.express as px
 import markdown2
-
-from graph.bar_plot1 import generate_graph
-from graph.graph2 import graph2
-from graph.graph3 import app as graph
-
+from sidebar import create_sidebar # navbar module import
+from area_detail_page import area_detail_page, generate_area_detail_page_callbacks # detail page module import
 from assets import style_dic # 딕셔너리 형태의 style지정파일(python file)
 
-# Iris dataset
-iris_data = px.data.iris()
-
-# card dataset
+# card dataset & dictionary
 jg_df = pd.read_csv("jg_df.csv")
+ddc_df = pd.read_csv("ddc_df.csv")
+nj_df = pd.read_csv("nj_df.csv")
+df_map = {"/sum":jg_df, "/jg":jg_df, "/ddc":ddc_df, "/nj":nj_df}
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.config['suppress_callback_exceptions'] = True
+app.config['suppress_callback_exceptions'] = True # 콜백함수 예외 무시
 
-sidebar = html.Div(
-    [
-        html.H1("📋Dashboard", id="dashboard-heading"),
-        html.P(
-            "📈Card Consumption\nPattern Analysis", className="lead", id="dashboard-description"
-        ),
-        html.Hr(),
-        dbc.Nav(
-            [
-                dbc.NavLink("서울특별시", href="/jg", active="exact", style=style_dic.navlink_style),
-                dbc.NavLink("경기도", href="/ddc", active="exact", style=style_dic.navlink_style),
-                dbc.NavLink("전라남도", href="/nj", active="exact", style=style_dic.navlink_style),
-            ],
-            vertical=True,
-            pills=True,
-        ),
-    ],
-    style=style_dic.SIDEBAR_STYLE,
-)
-
+sidebar = create_sidebar(app) # sidebar 모듈 호출
 content = html.Div(id="page-content", style=style_dic.CONTENT_STYLE)
 app.layout = html.Div([dcc.Location(id="url"), sidebar, content], style=style_dic.layout_style)
-
-# Read README file
-with open("README.md", "r", encoding="utf-8") as readme_file:
-    readme_content = readme_file.read()
     
 # Markdown to HTML function
-def markdown_to_html(markdown_text):
-    return dcc.Markdown(children=markdown_text, style=style_dic.readme_style)
+def markdown_to_html(markdown_url):
+    # Read README file
+    readme_content = open(markdown_url, "r", encoding="utf-8").read()
+    return dcc.Markdown(children=readme_content, style=style_dic.readme_style)
 
-# Dropdown에 들어갈 옵션 리스트 생성
-graph_options = ['Counts', 'Costs']
+# area_detail_page 모듈에서 추가된 부분
+generate_area_detail_page_callbacks(app)
 
 # Nav bar 선택에 따라 페이지 업데이트하는 콜백 함수
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
-    if pathname == "/jg":
-        return html.Div([
-            dcc.Dropdown(
-                id='graph-dropdown',
-                options=[{'label': option, 'value': option} for option in graph_options],
-                value=graph_options[0],  # 기본 선택값 설정
-                placeholder="Select",
-                style=style_dic.dropdown_styl  # Dropdown style
-            ),
-            html.Div(id='bar-chart-container'),  # 그래프를 넣을 컨테이너 추가
-        ])
-    elif pathname == "/ddc":
-        return html.Div([
-            graph2(iris_data),
-        ])
-    elif pathname == "/nj":
-        return html.Div([
-            graph2(iris_data),
-        ])
+    if pathname == "/sum":
+        return area_detail_page(pathname, df_map)
+    elif pathname in ["/jg", "/ddc", "/nj"]:
+        return area_detail_page(pathname, df_map)
     # basic page setting(readme)
-    return markdown_to_html(readme_content)
-
-# Dropdown 선택에 따라 그래프 업데이트하는 콜백 함수
-@app.callback(Output('bar-chart-container', 'children'),[Input('graph-dropdown', 'value')])
-def update_graph(selected_graph):
-    return generate_graph(jg_df, selected_graph, style_dic.bar_plot1_styl)
-
-# 대시보드 제목과 설명을 클릭하면 홈화면으로 넘어갈 수 있는 콜백함수(Callback to handle clicking on the dashboard heading and description)
-@app.callback(Output("url", "pathname"), [Input("dashboard-heading", "n_clicks"), Input("dashboard-description", "n_clicks")])
-def go_to_homepage(click_heading, click_description):
-    if click_heading or click_description:
-        return "/"
-    return dash.no_update
+    return markdown_to_html("README.md")
 
 if __name__ == "__main__":
     app.run_server(debug=True)

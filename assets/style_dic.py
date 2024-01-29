@@ -13,7 +13,7 @@ SIDEBAR_STYLE = {
     "bottom": 0,
     "width": "20rem",
     "margin": "2rem 0rem",
-    "padding": "1rem 1rem",
+    "padding": "5rem 0rem",
     "backgroundColor": "#191919",
     "color": "#ffffff",
     "-webkit-text-stroke-width": "thick",
@@ -24,7 +24,7 @@ SIDEBAR_STYLE = {
 # add some padding.
 CONTENT_STYLE = {
     "margin": "0rem 0rem -2rem 20rem",
-    "padding": "2rem 1rem",
+    "padding": "6rem 1rem",
     "backgroundColor": "#191919",
 }
 
@@ -35,7 +35,7 @@ navlink_style = {
 }
 
 readme_style = {
-    "padding": "5rem 15rem 0rem",
+    "padding": "1.5rem 15rem 0rem",
     "font-size": "1.2rem",
 }
 
