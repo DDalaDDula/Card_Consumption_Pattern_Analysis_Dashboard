@@ -1,15 +1,21 @@
-from dash import html, dash
-from dash.dependencies import Input, Output
+from dash import html, dcc
 import dash_bootstrap_components as dbc
+from dash.dependencies import Input, Output
+from dash import Dash
 from assets import style_dic
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = html.Div([
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content'),
+])
 
 def create_sidebar(app):
     return html.Div(
         [
-            html.H1("📋Dashboard", id="dashboard-heading"),
-            html.P(
-                "📈Card Consumption\nPattern Analysis", className="lead", id="dashboard-description"
-            ),
+            dcc.Link(html.H1("📋Dashboard", id="dashboard-heading"), href="/", style={"textDecoration": "none", "color": "inherit"}),
+            dcc.Link(html.P("📈Card Consumption\nPattern Analysis", className="lead", id="dashboard-description"), href="/", style={"textDecoration": "none", "color": "inherit"}),
             html.Hr(),
             dbc.Nav(
                 [
@@ -24,14 +30,3 @@ def create_sidebar(app):
         ],
         style=style_dic.SIDEBAR_STYLE,
     )
-    
-    # 대시보드 제목과 설명을 클릭하면 홈화면으로 넘어갈 수 있는 콜백함수
-    @app.callback(Output("url", "pathname"), [Input("dashboard-heading", "n_clicks"), Input("dashboard-description", "n_clicks")])
-    def go_to_homepage(click_heading, click_description):
-        if click_heading or click_description:
-            return "/"
-        return dash.no_update
-    
-    return navbar
-
-    

@@ -6,7 +6,7 @@
     python==3.8.16
     plotly==5.18.0
     dash==2.14.2
-    dash-bootstrap-components 1.5.0 
+    dash-bootstrap-components==1.5.0 
     flask==2.2.5
 
 ---
