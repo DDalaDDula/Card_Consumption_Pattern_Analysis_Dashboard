@@ -21,8 +21,13 @@ body {
     margin-bottom: 2rem;
 }
 .main-svg:first-child {
-    background-color: #212121 !important;
+    background-color: #303030 !important;
     border-radius: 1rem;
+}
+.ygrid.crisp {
+    stroke: rgb(131, 141, 153) !important;
+    stroke-opacity: 1;
+    stroke-width: 1px;
 }
 h3 {
     font-size: 1.5rem;
@@ -30,16 +35,38 @@ h3 {
 h4 {
     font-size: 1.2rem;
 }
+
+.dash-dropdown {
+    width: 8rem;
+    position: relative;
+    left: 65rem;
+    top: 4rem;
+    z-index:5;
+
+}
+.Select-control {
+    font-weight: bold;
+    background-color:#191919 !important;
+    border-width:0.2rem !important;
+    border-color:#ffffff !important;
+    border-radius: 0.5rem !important;
+}
+
 .Select-value > .Select-value-label {
     color: #ffffff !important;
 }
 .Select-menu-outer {
     color: #ffffff;
-    left: 60.7rem;
-    top: 5.6rem;
+    /* left: 65.7rem;
+    top: 6rem; */
     z-index: 4;
     border-radius: 0.5rem;
     background-color: #191919;
     border-width: 0.2rem;
     border-color: #ffffff;
+}
+div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 90rem !important;
+    height: 22rem !important;
 }

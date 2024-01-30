@@ -1,5 +1,3 @@
-'''style 설정영역'''
-
 layout_style = {
     "backgroundColor": "#191919",
     "color": "#ffffff"
@@ -39,22 +37,13 @@ readme_style = {
     "font-size": "1.2rem",
 }
 
-dropdown_styl = {
-    'width': '8rem',
-    'left':'60.7rem',
-    'top':'3.5rem',
-    'z-index':'5',
-    'border-radius':'0.5rem',
-    'background-color':'#191919',
-    'border-width':'0.2rem',
-    'border-color':'#ffffff',
-}
-
 bar_plot1_styl = {
     'display': 'flex',
-    'flex-direction': 'column',
     'justify-content': 'flex-start',
     'align-items': 'center'
 }
-
-'''스타일 설정영역 끝'''
+pie_plot1_styl = {
+    'display': 'flex',
+    'justify-content': 'flex-start',
+    'align-items': 'center'
+}
