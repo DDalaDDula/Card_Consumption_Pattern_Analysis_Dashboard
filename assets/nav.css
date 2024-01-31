@@ -36,10 +36,19 @@ h4 {
     font-size: 1.2rem;
 }
 
-.dash-dropdown {
+#bar-graph-dropdown {
     width: 8rem;
     position: relative;
-    left: 65rem;
+    left: 70rem;
+    top: 4rem;
+    z-index:5;
+
+}
+
+#pie-graph-dropdown {
+    width: 8rem;
+    position: relative;
+    left: 70rem;
     top: 4rem;
     z-index:5;
 
@@ -65,8 +74,24 @@ h4 {
     border-width: 0.2rem;
     border-color: #ffffff;
 }
+
+#bar-chart-container {
+    display: flex;
+    justify-content: center;
+}
 div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
-    width: 90rem !important;
-    height: 22rem !important;
+    width: 70rem !important;
+    height: 25rem !important;
+}
+
+#pie-chart-container {
+    display: flex;
+    justify-content: center;
+}
+
+div#pie-chart-container > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 35rem !important;
+    height: 36rem !important;
 }

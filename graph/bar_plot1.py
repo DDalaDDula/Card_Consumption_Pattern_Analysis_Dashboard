@@ -39,9 +39,10 @@ def generate_bar_chart(df, selected_graph, graph_style):
         template='plotly_dark',  # 사용할 템플릿
         font=dict(
             family='Arial, sans-serif',  # 사용할 폰트 설정
-            size=14,  # 폰트 크기 설정
+            size=12,  # 폰트 크기 설정
         )
     )
+    fig.update_traces(marker_line_color= "grey", marker_line_width = 2)  # pull을 사용하여 상위 세 조각을 분리
     return html.Div([
         dcc.Graph(
             id='bar-chart',
