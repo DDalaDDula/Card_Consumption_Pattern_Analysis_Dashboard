@@ -5,6 +5,7 @@ layout_style = {
 
 #the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
+    "z-index": "100",
     "position": "fixed",
     "top": 0,
     "left": 0,
@@ -21,8 +22,8 @@ SIDEBAR_STYLE = {
 
 # add some padding.
 CONTENT_STYLE = {
-    "margin": "0rem 0rem -2rem 20rem",
-    "padding": "6rem 1rem",
+    "margin": "0rem 0rem 0rem 20rem",
+    "padding": "6rem 11rem",
     "backgroundColor": "#191919",
 }
 

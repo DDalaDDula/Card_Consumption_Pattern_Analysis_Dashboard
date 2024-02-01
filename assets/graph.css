@@ -1,0 +1,84 @@
+.main-svg:first-child {
+    background-color: #303030 !important;
+    border-radius: 1rem;
+}
+.ygrid.crisp {
+    stroke: rgb(131, 141, 153) !important;
+    stroke-opacity: 1;
+    stroke-width: 1px;
+}
+#bar-graph-dropdown {
+    width: 8rem;
+    position: absolute;
+    left: 91rem;
+    top: 7.5rem;
+    z-index:5;
+}
+
+#pie-graph-dropdown1 {
+    width: 8rem;
+    position: absolute;
+    left: 55rem;
+    top: 34.5rem;
+    z-index:5;
+}
+#pie-graph-dropdown2 {
+    width: 8rem;
+    position: absolute;
+    left: 91rem;
+    top: 34.5rem;
+    z-index: 5;
+}
+
+.Select-control {
+    font-weight: bold;
+    background-color:#191919 !important;
+    border-width:0.2rem !important;
+    border-color:#ffffff !important;
+    border-radius: 0.5rem !important;
+}
+
+.Select-value > .Select-value-label {
+    color: #ffffff !important;
+}
+.Select-menu-outer {
+    color: #ffffff;
+    z-index: 4;
+    border-radius: 0.5rem;
+    background-color: #191919;
+    border-width: 0.2rem;
+    border-color: #ffffff;
+}
+
+#bar-chart-container {
+    display: flex;
+    justify-content: center;
+}
+div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 70rem !important;
+    height: 25rem !important;
+    margin: 0rem 0rem 2rem 0rem;
+}
+
+#pie_group {
+    display: flex;
+    justify-content: space-between;
+    margin: 0rem 0rem 2rem 0rem;
+}
+
+div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 34rem !important;
+    height: 35rem !important;
+}
+
+div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 34rem !important;
+    height: 35rem !important;
+}
+.Select-control:hover {
+    transform: scale(1.02);
+    transition: transform 2s ease;
+}
