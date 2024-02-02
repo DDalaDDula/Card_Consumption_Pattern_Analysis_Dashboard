@@ -2,7 +2,7 @@ from dash import html, dcc
 import plotly.express as px
 import plotly.graph_objects as go
 
-def generate_pie_chart(df, selected_category, graph_style):
+def generate_pie_chart1(df, selected_category, graph_style):
     if selected_category == 'Counts':
         fig = px.pie(
             df['city_s'].value_counts(),
@@ -22,7 +22,7 @@ def generate_pie_chart(df, selected_category, graph_style):
         fig = px.pie(cost_sum_by_city, 
                     names=cost_sum_by_city.index, 
                     values=cost_sum_by_city.values,
-                    title='City Total Cost Ratio',  # 파이 차트 제목 설정
+                    title='Area Total Cost Ratio',  # 파이 차트 제목 설정
                     color_discrete_sequence=px.colors.cyclical.Twilight_r,  # 색상 설정
                     custom_data=[cost_sum_by_city.values],  # 추가 정보를 custom_data로 설정
                     labels={'customdata': 'Total Cost'},  # custom_data에 대한 레이블 설정
@@ -45,14 +45,14 @@ def generate_pie_chart(df, selected_category, graph_style):
     ),
     ], style=graph_style)
 
-def generate_pie_chart_sex_age(df, selected_chart, graph_style):
+def generate_pie_chart2(df, selected_chart, graph_style):
     if selected_chart == 'Sex':
         # 성별에 대한 파이 차트
         fig = px.pie(df['sex'].value_counts(), 
                      names=df['sex'].value_counts().index, 
                      values=df['sex'].value_counts().values,
                      title='Gender Composition Ratio',
-                     color_discrete_sequence=px.colors.sequential.Agsunset,
+                     color_discrete_sequence=px.colors.sequential.Agsunset_r,
                      hole=0.4)
     elif selected_chart == 'Age':
         # 연령대에 대한 파이 차트
@@ -68,7 +68,7 @@ def generate_pie_chart_sex_age(df, selected_chart, graph_style):
 
     # Tooltip에 기타 항목에 대한 정보 추가
     fig.update_layout(showlegend=False, template='plotly_dark')
-    fig.update_traces(textinfo='label+percent', pull=[0.05, 0.05, 0.05], marker_line_color= "grey", marker_line_width = 2)  # pull을 사용하여 상위 세 조각을 분리
+    fig.update_traces(textinfo='label+percent', pull=[0.05, 0.05, 0.05], marker_line_color= "grey", marker_line_width = 1)  # pull을 사용하여 상위 세 조각을 분리
     
     return html.Div([
         dcc.Graph(
