@@ -34,7 +34,7 @@ navlink_style = {
 }
 
 readme_style = {
-    "padding": "1.5rem 15rem 0rem",
+    "padding": "1.5rem 7rem 0rem",
     "font-size": "1.2rem",
 }
 

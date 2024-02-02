@@ -70,13 +70,13 @@ div#bar-chart-container > div > div > div > div > div.user-select-none.svg-conta
 div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
     width: 34rem !important;
-    height: 35rem !important;
+    height: 25rem !important;
 }
 
 div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
     width: 34rem !important;
-    height: 35rem !important;
+    height: 25rem !important;
 }
 .Select-control:hover {
     transform: scale(1.02);
