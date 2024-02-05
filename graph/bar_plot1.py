@@ -15,21 +15,6 @@ def generate_bar_chart(df, selected_graph, graph_style):
             labels={'x': 'Area', 'y': 'Counts(K)', 'color': 'Counts'},
         )
     elif selected_graph == 'Costs':
-        '''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''
-        # # 'city_s' 컬럼 값에 따른 'cost'의 합 계산
-        # cost_sum_by_city = df.groupby(['city_s', 'code_m'])['cost'].sum().sort_values(ascending=False)
-        # cost_sum_by_city = cost_sum_by_city.reset_index(level=1)
-        # # 바 차트 그리기 (Costs)
-        # fig = px.bar(cost_sum_by_city,
-        #     x=cost_sum_by_city.index,
-        #     y=cost_sum_by_city.cost,
-        #     color=cost_sum_by_city.cost,
-        #     color_continuous_scale='gnbu_r',
-        #     labels={'x': 'Area', 'y': 'Costs', 'color': 'Costs(B)'},
-        #     hover_data={'code_m': True},  # hover 시 나타낼 정보
-        # )
-        '''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''
-
         # 'city_s' 컬럼 값에 따른 'cost'의 합 계산
         cost_sum_by_city = df.groupby('city_s')['cost'].sum().sort_values(ascending=False)
         # 바 차트 그리기 (Costs)
@@ -55,10 +40,10 @@ def generate_bar_chart(df, selected_graph, graph_style):
         font=dict(
             family='Arial, sans-serif',  # 사용할 폰트 설정
             size=12,  # 폰트 크기 설정
-        )
+        ),
     )
 
-    fig.update_traces(marker_line_color= "grey", marker_line_width = 2, hoverinfo='x+y')  # pull을 사용하여 상위 세 조각을 분리
+    fig.update_traces(marker_line_color= "grey", marker_line_width = 2)
     return html.Div([
         dcc.Graph(
             id='bar-chart',
@@ -67,3 +52,19 @@ def generate_bar_chart(df, selected_graph, graph_style):
 
         ),
     ], style=graph_style)
+
+
+'''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''
+# # 'city_s' 컬럼 값에 따른 'cost'의 합 계산
+# cost_sum_by_city = df.groupby(['city_s', 'code_m'])['cost'].sum().sort_values(ascending=False)
+# cost_sum_by_city = cost_sum_by_city.reset_index(level=1)
+# # 바 차트 그리기 (Costs)
+# fig = px.bar(cost_sum_by_city,
+#     x=cost_sum_by_city.index,
+#     y=cost_sum_by_city.cost,
+#     color=cost_sum_by_city.cost,
+#     color_continuous_scale='gnbu_r',
+#     labels={'x': 'Area', 'y': 'Costs', 'color': 'Costs(B)'},
+#     hover_data={'code_m': True},  # hover 시 나타낼 정보
+# )
+'''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''

@@ -60,7 +60,11 @@ div#bar-chart-container > div > div > div > div > div.user-select-none.svg-conta
     height: 25rem !important;
     margin: 0rem 0rem 2rem 0rem;
 }
-
+div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container:hover {
+    transform: scale(1.005);
+    transition: transform 2s ease;
+    transition-timing-function: ease-in-out;
+}
 #pie_group {
     display: flex;
     justify-content: space-between;
@@ -72,13 +76,23 @@ div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-cont
     width: 34rem !important;
     height: 25rem !important;
 }
-
+div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container:hover {
+    transform: scale(1.005);
+    transition: transform 1s ease;
+    transition-timing-function: ease-in-out;
+}
 div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
     width: 34rem !important;
     height: 25rem !important;
 }
+div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container:hover {
+    transform: scale(1.005);
+    transition: transform 1s ease;
+    transition-timing-function: ease-in-out;
+}
 .Select-control:hover {
     transform: scale(1.02);
-    transition: transform 2s ease;
+    transition: transform 1s ease;
+    transition-timing-function: ease-in-out;
 }
