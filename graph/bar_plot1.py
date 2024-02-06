@@ -33,7 +33,7 @@ def generate_bar_chart(df, selected_graph, graph_style):
     fig.update_layout(
         xaxis_title='Area',
         yaxis_title='Counts' if selected_graph == 'Counts' else 'Costs',
-        title='Number of payments' if selected_graph == 'Counts' else 'Total cost',
+        title='Number of area payments' if selected_graph == 'Counts' else 'Total cost of area payments',
         margin=dict(t=90),  # 그래프 상단 margin 조절
         barmode='group',
         template='plotly_dark',  # 사용할 템플릿

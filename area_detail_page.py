@@ -1,8 +1,9 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import pandas as pd
-from graph.bar_plot1 import generate_bar_chart
-from graph.pie_plot1 import generate_pie_chart1, generate_pie_chart2
+from graph.pie_plot1 import *
+from graph.bar_plot1 import *
+from graph.pie_plot2 import *
 from graph.line_plot1 import *
 
 # card dataset & dictionary
@@ -10,8 +11,9 @@ jg_df = pd.read_csv("dataset/jg_df.csv")
 ddc_df = pd.read_csv("dataset/ddc_df.csv")
 nj_df = pd.read_csv("dataset/nj_df.csv")
 df_map = {"/jg":jg_df, "/ddc":ddc_df, "/nj":nj_df} #"/sum":jg_df, 
+title_map = {"/jg":"서울특별시(중구)", "/ddc":"경기도(동두천시)", "/nj":"전라남도(나주시)"} #"/sum":jg_df, 
 
-def area_detail_page(pathname, style_dic):
+def area_detail_page(pathname):
     # Dropdown에 들어갈 옵션 리스트 생성
     category_options1 = ['Counts', 'Costs']
     category_options2 = ['Sex', 'Age']
@@ -20,6 +22,27 @@ def area_detail_page(pathname, style_dic):
         return html.Div("Page not found")
 
     return html.Div([
+            html.H1(f"🏙️{title_map[pathname]}", id="page-title"),
+            html.Hr(),
+        html.Div([
+            dcc.Loading(
+                id="loading-pie",
+                type="default",
+                children=[html.Div(id='pie-chart-basic-container1')]
+            ),
+            dcc.Dropdown(
+                id='pie-graph-dropdown2',
+                options=[{'label': option, 'value': option} for option in category_options2],
+                value=category_options2[0],  # 기본 선택값 설정
+                placeholder="Select",
+            ),
+            dcc.Loading(
+                id="loading-pie",
+                type="default",
+                children=[html.Div(id='pie-chart-basic-container2')]
+            ),
+        ], id="pie_group1"),
+
         dcc.Dropdown(
             id='bar-graph-dropdown',
             options=[{'label': option, 'value': option} for option in category_options1],
@@ -43,22 +66,28 @@ def area_detail_page(pathname, style_dic):
                 type="default",
                 children=[html.Div(id='pie-chart-container1')]
             ),
-            dcc.Dropdown(
-                id='pie-graph-dropdown2',
-                options=[{'label': option, 'value': option} for option in category_options2],
-                value=category_options2[0],  # 기본 선택값 설정
-                placeholder="Select",
-            ),
-            dcc.Loading(
-                id="loading-pie",
-                type="default",
-                children=[html.Div(id='pie-chart-container2')]
-            ),
-        ], id="pie_group")
-    ])
+        ], id="pie_group2")
+    ], id="area_detail_page")
 
 # area_detail_page.py에 추가된 함수
 def generate_area_detail_page_callbacks(app, style_dic):
+    @app.callback(Output('pie-chart-basic-container1', 'children'), 
+                  [Input("url", "pathname")])
+    def update_pie_chart_company(pathname):  # 새로운 파이 차트 함수로 변경
+        df = df_map.get(pathname, None)
+        if df is None:
+            return html.Div("페이지를 찾을 수 없습니다.")
+        return generate_basic_pie_chart1(df, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
+
+    @app.callback(Output('pie-chart-basic-container2', 'children'), 
+                  [Input('pie-graph-dropdown2', 'value'),  # 새로운 드롭다운 추가
+                   Input("url", "pathname")])
+    def update_pie_chart_sex_age(selected_chart, pathname):  # 새로운 파이 차트 함수로 변경
+        df = df_map.get(pathname, None)
+        if df is None:
+            return html.Div("페이지를 찾을 수 없습니다.")
+        return generate_basic_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
+
     @app.callback(Output('bar-chart-container', 'children'),
                   [Input('bar-graph-dropdown', 'value'),
                    Input("url", "pathname")])
@@ -67,7 +96,7 @@ def generate_area_detail_page_callbacks(app, style_dic):
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_bar_chart(df, selected_category, style_dic.bar_plot1_styl)
-
+    
     @app.callback(Output('pie-chart-container1', 'children'),
                   [Input('pie-graph-dropdown1', 'value'),
                    Input("url", "pathname")])
@@ -76,12 +105,3 @@ def generate_area_detail_page_callbacks(app, style_dic):
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_pie_chart1(df, selected_category, style_dic.pie_plot1_styl)
-
-    @app.callback(Output('pie-chart-container2', 'children'), 
-                  [Input('pie-graph-dropdown2', 'value'),  # 새로운 드롭다운 추가
-                   Input("url", "pathname")])
-    def update_pie_chart_sex_age(selected_chart, pathname):  # 새로운 파이 차트 함수로 변경
-        df = df_map.get(pathname, None)
-        if df is None:
-            return html.Div("페이지를 찾을 수 없습니다.")
-        return generate_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
