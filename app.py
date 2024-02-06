@@ -26,10 +26,10 @@ generate_area_detail_page_callbacks(app, style_dic)
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/sum":
-        return area_detail_page(pathname, style_dic)
+        return area_detail_page(pathname)
     
     elif pathname in ["/jg", "/ddc", "/nj"]:
-        return area_detail_page(pathname, style_dic)
+        return area_detail_page(pathname)
     
     return markdown_to_html("README.md", style_dic) # basic page setting(readme)
 
