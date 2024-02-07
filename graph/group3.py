@@ -44,3 +44,34 @@ def generate_pie_chart1(df, selected_category, graph_style):
         config={'displayModeBar': False}  # Hide the modebar
     ),
     ], style=graph_style)
+
+def generate_bar_chart2(df, graph_style):
+    # 바 차트 그리기 (Counts)
+    fig = px.bar(
+        x=df['데이터건수'],
+        y=df['표준산업분류(중)'],
+        color_continuous_scale='agsunset',  # reverse 하고싶으면 "_r" 붙이기
+    )
+
+    # 레이아웃 업데이트
+    fig.update_layout(
+        xaxis_title='Counts',
+        yaxis_title='Standard Industry',
+        title='Number of Standard Industry',
+        margin=dict(l=270), 
+        template='plotly_dark',  # 사용할 템플릿
+        font=dict(
+            family='Arial, sans-serif',  # 사용할 폰트 설정
+            size=12,  # 폰트 크기 설정
+        ),
+    )
+
+    fig.update_traces(marker_line_color= "grey", marker_line_width = 2)
+    return html.Div([
+        dcc.Graph(
+            id='bar-chart2',
+            figure=fig,
+            config={'displayModeBar': False}  # Hide the modebar
+
+        ),
+    ], style=graph_style)

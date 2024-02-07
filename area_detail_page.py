@@ -1,16 +1,22 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import pandas as pd
-from graph.pie_plot1 import *
-from graph.bar_plot1 import *
-from graph.pie_plot2 import *
+from graph.group1 import *
+from graph.group2 import *
+from graph.group3 import *
 from graph.line_plot1 import *
 
-# card dataset & dictionary
+# dataset & dictionary
 jg_df = pd.read_csv("dataset/jg_df.csv")
 ddc_df = pd.read_csv("dataset/ddc_df.csv")
 nj_df = pd.read_csv("dataset/nj_df.csv")
+
+jg_std = pd.read_csv("dataset/jg_std.csv")
+ddc_std = pd.read_csv("dataset/ddc_std.csv")
+nj_std = pd.read_csv("dataset/nj_std.csv")
+
 df_map = {"/jg":jg_df, "/ddc":ddc_df, "/nj":nj_df} #"/sum":jg_df, 
+std_map = {"/jg":jg_std, "/ddc":ddc_std, "/nj":nj_std}
 title_map = {"/jg":"서울특별시(중구)", "/ddc":"경기도(동두천시)", "/nj":"전라남도(나주시)"} #"/sum":jg_df, 
 
 def area_detail_page(pathname):
@@ -41,19 +47,20 @@ def area_detail_page(pathname):
                 type="default",
                 children=[html.Div(id='pie-chart-basic-container2')]
             ),
-        ], id="pie_group1"),
-
-        dcc.Dropdown(
-            id='bar-graph-dropdown',
-            options=[{'label': option, 'value': option} for option in category_options1],
-            value=category_options1[0],  # 기본 선택값 설정
-            placeholder="Select",
-        ),
-        dcc.Loading(
-            id="loading-bar",
-            type="default",
-            children=[html.Div(id='bar-chart-container')]
-        ),
+        ], id="group1"),
+        html.Div([
+            dcc.Dropdown(
+                id='bar-graph-dropdown',
+                options=[{'label': option, 'value': option} for option in category_options1],
+                value=category_options1[0],  # 기본 선택값 설정
+                placeholder="Select",
+            ),
+            dcc.Loading(
+                id="loading-bar",
+                type="default",
+                children=[html.Div(id='bar-chart-container1')]
+            ),
+        ], id="group2"),
         html.Div([
             dcc.Dropdown(
                 id='pie-graph-dropdown1',
@@ -66,7 +73,12 @@ def area_detail_page(pathname):
                 type="default",
                 children=[html.Div(id='pie-chart-container1')]
             ),
-        ], id="pie_group2")
+            dcc.Loading(
+                id="loading-pie",
+                type="default",
+                children=[html.Div(id='bar-chart-container2')]
+            ),
+        ], id="group3")
     ], id="area_detail_page")
 
 # area_detail_page.py에 추가된 함수
@@ -88,14 +100,14 @@ def generate_area_detail_page_callbacks(app, style_dic):
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_basic_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
 
-    @app.callback(Output('bar-chart-container', 'children'),
+    @app.callback(Output('bar-chart-container1', 'children'),
                   [Input('bar-graph-dropdown', 'value'),
                    Input("url", "pathname")])
-    def update_bar_chart(selected_category, pathname):
+    def update_bar_chart1(selected_category, pathname):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
-        return generate_bar_chart(df, selected_category, style_dic.bar_plot1_styl)
+        return generate_bar_chart1(df, selected_category, style_dic.bar_plot1_styl)
     
     @app.callback(Output('pie-chart-container1', 'children'),
                   [Input('pie-graph-dropdown1', 'value'),
@@ -105,3 +117,11 @@ def generate_area_detail_page_callbacks(app, style_dic):
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_pie_chart1(df, selected_category, style_dic.pie_plot1_styl)
+
+    @app.callback(Output('bar-chart-container2', 'children'),
+                  [Input("url", "pathname")])
+    def update_bar_chart2(pathname):
+        df = std_map.get(pathname, None)
+        if df is None:
+            return html.Div("페이지를 찾을 수 없습니다.")
+        return generate_bar_chart2(df, style_dic.bar_plot2_styl)

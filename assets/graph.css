@@ -53,6 +53,23 @@ text {
     border-width: 0.2rem;
     border-color: #ffffff;
 }
+.Select-control:hover {
+    transform: scale(1.01);
+}
+
+#group1 {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin: 0rem 0rem 2rem 0rem !important;
+}
+#group2 {
+    margin: 0rem 0rem 2rem 0rem !important;
+}
+#group3 {
+    display: flex !important;
+    justify-content: space-between !important;
+    margin: 0rem 0rem 2rem 0rem !important;
+}
 
 div#pie-chart-basic-container1 > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
@@ -72,31 +89,16 @@ div#pie-chart-basic-container2 > div > div > div > div > div.user-select-none.sv
 div#pie-chart-basic-container2 > div > div > div > div > div.user-select-none.svg-container:hover {
     transform: scale(1.01);
 }
-#bar-chart-container {
-    display: flex;
-    justify-content: center;
-}
-div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container {
+div#bar-chart-container1 > div > div > div > div > div.user-select-none.svg-container {
     position: relative !important;
     width: 70rem !important;
     height: 25rem !important;
-    margin: 0rem 0rem 2rem 0rem;
     transition: all 1.5s;
 }
-div#bar-chart-container > div > div > div > div > div.user-select-none.svg-container:hover {
+div#bar-chart-container1 > div > div > div > div > div.user-select-none.svg-container:hover {
     transform: scale(1.01);
     transition: transform 2s ease;
     transition-timing-function: ease-out;
-}
-#pie_group1 {
-    display: flex;
-    justify-content: space-between;
-    margin: 0rem 0rem 2rem 0rem;
-}
-#pie_group2 {
-    display: flex;
-    justify-content: space-between;
-    margin: 0rem 0rem 2rem 0rem;
 }
 
 div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container {
@@ -108,15 +110,20 @@ div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-cont
 div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container:hover {
     transform: scale(1.01);
 }
-div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
-    position: relative !important;
-    width: 34rem !important;
-    height: 25rem !important;
+#bar-chart-container2 {
+    position: relative;
+    contain: content;
     transition: all 1.5s;
 }
-div#pie-chart-container2 > div > div > div > div > div.user-select-none.svg-container:hover {
+#bar-chart-container2:hover {
     transform: scale(1.01);
 }
-.Select-control:hover {
-    transform: scale(1.01);
+div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 34rem !important;
+    height: 100rem !important;
 }
+
+/* div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
+    transform: scale(1.01);
+} */

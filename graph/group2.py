@@ -2,7 +2,7 @@ from dash import html, dcc
 import plotly.express as px
 import plotly.graph_objects as go
 
-def generate_bar_chart(df, selected_graph, graph_style):
+def generate_bar_chart1(df, selected_graph, graph_style):
     if selected_graph == 'Counts':
         # value_cnt 계산
         value_cnt = df['city_s'].value_counts()
@@ -46,7 +46,7 @@ def generate_bar_chart(df, selected_graph, graph_style):
     fig.update_traces(marker_line_color= "grey", marker_line_width = 2)
     return html.Div([
         dcc.Graph(
-            id='bar-chart',
+            id='bar-chart1',
             figure=fig,
             config={'displayModeBar': False}  # Hide the modebar
 
