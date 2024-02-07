@@ -39,12 +39,18 @@ readme_style = {
 }
 
 bar_plot1_styl = {
-    'display': 'flex',
-    'justify-content': 'flex-start',
-    'align-items': 'center'
+    "align-items": "center"
 }
+
 pie_plot1_styl = {
-    'display': 'flex',
-    'justify-content': 'flex-start',
-    'align-items': 'center'
+    "display": "flex",
+    "justify-content": "flex-start",
+    "align-items": "center"
+}
+
+bar_plot2_styl = {
+    "maxHeight": "25rem", 
+    "overflow-y": "scroll",
+    "border-radius": "1rem",
+    "scrollbar-width": "none"
 }
