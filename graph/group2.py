@@ -33,7 +33,7 @@ def generate_bar_chart1(df, selected_graph, graph_style):
     fig.update_layout(
         xaxis_title='Area',
         yaxis_title='Counts' if selected_graph == 'Counts' else 'Costs',
-        title='Number of area payments' if selected_graph == 'Counts' else 'Total cost of area payments',
+        title='Count of area payments' if selected_graph == 'Counts' else 'Total cost of area payments',
         margin=dict(t=90),  # 그래프 상단 margin 조절
         barmode='group',
         template='plotly_dark',  # 사용할 템플릿
@@ -49,22 +49,5 @@ def generate_bar_chart1(df, selected_graph, graph_style):
             id='bar-chart1',
             figure=fig,
             config={'displayModeBar': False}  # Hide the modebar
-
         ),
     ], style=graph_style)
-
-
-'''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''
-# # 'city_s' 컬럼 값에 따른 'cost'의 합 계산
-# cost_sum_by_city = df.groupby(['city_s', 'code_m'])['cost'].sum().sort_values(ascending=False)
-# cost_sum_by_city = cost_sum_by_city.reset_index(level=1)
-# # 바 차트 그리기 (Costs)
-# fig = px.bar(cost_sum_by_city,
-#     x=cost_sum_by_city.index,
-#     y=cost_sum_by_city.cost,
-#     color=cost_sum_by_city.cost,
-#     color_continuous_scale='gnbu_r',
-#     labels={'x': 'Area', 'y': 'Costs', 'color': 'Costs(B)'},
-#     hover_data={'code_m': True},  # hover 시 나타낼 정보
-# )
-'''cost bar를 코드(code_m)에 따라 나누는 그래프코드'''

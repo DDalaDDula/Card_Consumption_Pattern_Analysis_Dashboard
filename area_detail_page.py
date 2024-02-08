@@ -4,7 +4,7 @@ import pandas as pd
 from graph.group1 import *
 from graph.group2 import *
 from graph.group3 import *
-from graph.line_plot1 import *
+from graph.group4 import *
 
 # dataset & dictionary
 jg_df = pd.read_csv("dataset/jg_df.csv")
@@ -73,11 +73,11 @@ def area_detail_page(pathname):
                 type="default",
                 children=[html.Div(id='pie-chart-container1')]
             ),
-            dcc.Loading(
-                id="loading-pie",
-                type="default",
-                children=[html.Div(id='bar-chart-container2')]
-            ),
+            # dcc.Loading(
+            #     id="loading-pie",
+            #     type="default",
+            #     children=[html.Div(id='bar-chart-container2')]
+            # ),
         ], id="group3")
     ], id="area_detail_page")
 
