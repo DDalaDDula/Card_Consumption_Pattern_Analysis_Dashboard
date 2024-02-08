@@ -1,6 +1,7 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output
 import pandas as pd
+import time
 from graph.group1 import *
 from graph.group2 import *
 from graph.group3 import *
@@ -33,7 +34,7 @@ def area_detail_page(pathname):
         html.Div([
             dcc.Loading(
                 id="loading-pie",
-                type="default",
+                type="circle",
                 children=[html.Div(id='pie-chart-basic-container1')]
             ),
             dcc.Dropdown(
@@ -44,7 +45,7 @@ def area_detail_page(pathname):
             ),
             dcc.Loading(
                 id="loading-pie",
-                type="default",
+                type="circle",
                 children=[html.Div(id='pie-chart-basic-container2')]
             ),
         ], id="group1"),
@@ -57,7 +58,7 @@ def area_detail_page(pathname):
             ),
             dcc.Loading(
                 id="loading-bar",
-                type="default",
+                type="circle",
                 children=[html.Div(id='bar-chart-container1')]
             ),
         ], id="group2"),
@@ -70,12 +71,12 @@ def area_detail_page(pathname):
             ),
             dcc.Loading(
                 id="loading-pie",
-                type="default",
+                type="circle",
                 children=[html.Div(id='pie-chart-container1')]
             ),
             # dcc.Loading(
             #     id="loading-pie",
-            #     type="default",
+            #     type="circle",
             #     children=[html.Div(id='bar-chart-container2')]
             # ),
         ], id="group3")
@@ -89,6 +90,7 @@ def generate_area_detail_page_callbacks(app, style_dic):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
+        # time.sleep(500)
         return generate_basic_pie_chart1(df, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
 
     @app.callback(Output('pie-chart-basic-container2', 'children'), 
@@ -98,6 +100,7 @@ def generate_area_detail_page_callbacks(app, style_dic):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
+        # time.sleep(500)
         return generate_basic_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
 
     @app.callback(Output('bar-chart-container1', 'children'),
@@ -107,6 +110,7 @@ def generate_area_detail_page_callbacks(app, style_dic):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
+        # time.sleep(500)
         return generate_bar_chart1(df, selected_category, style_dic.bar_plot1_styl)
     
     @app.callback(Output('pie-chart-container1', 'children'),
@@ -116,6 +120,7 @@ def generate_area_detail_page_callbacks(app, style_dic):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
+        # time.sleep(500)
         return generate_pie_chart1(df, selected_category, style_dic.pie_plot1_styl)
 
     @app.callback(Output('bar-chart-container2', 'children'),
@@ -124,4 +129,5 @@ def generate_area_detail_page_callbacks(app, style_dic):
         df = std_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
+        # time.sleep(500)
         return generate_bar_chart2(df, style_dic.bar_plot2_styl)
