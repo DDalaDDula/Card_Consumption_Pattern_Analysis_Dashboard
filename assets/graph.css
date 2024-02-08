@@ -12,25 +12,28 @@ text {
 }
 #bar-graph-dropdown {
     width: 8rem;
-    position: absolute;
+    position: absolute !important;
     left: 91rem;
     top: 40.5rem;
     z-index:5;
+    margin: 0rem !important;
 }
 
 #pie-graph-dropdown1 {
     width: 8rem;
-    position: absolute;
+    position: absolute !important;
     left: 55rem;
     top: 67.5rem;
     z-index:5;
+    margin: 0rem !important;
 }
 #pie-graph-dropdown2 {
     width: 8rem;
-    position: absolute;
+    position: absolute !important;
     left: 91rem;
     top: 13.5rem;
     z-index: 5;
+    margin: 0rem !important;
 }
 
 .Select-control {
@@ -61,14 +64,26 @@ text {
     display: flex !important;
     justify-content: space-between !important;
     margin: 0rem 0rem 2rem 0rem !important;
+    height: 25rem;
+}
+#group1 > div{
+    position: relative;
 }
 #group2 {
     margin: 0rem 0rem 2rem 0rem !important;
+}
+#group2 > div{
+    position: relative;
+    height: 25rem;
 }
 #group3 {
     display: flex !important;
     justify-content: space-between !important;
     margin: 0rem 0rem 2rem 0rem !important;
+    height: 25rem;
+}
+#group3 > div{
+    position: relative;
 }
 
 div#pie-chart-basic-container1 > div > div > div > div > div.user-select-none.svg-container {
