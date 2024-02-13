@@ -35,6 +35,14 @@ text {
     z-index: 5;
     margin: 0rem !important;
 }
+#mapbox-dropdown1 {
+    width: 8rem;
+    position: absolute !important;
+    left: 68.5rem;
+    top: 67.5rem;
+    z-index: 5;
+    margin: 0rem !important;
+}
 
 .Select-control {
     font-weight: bold;
@@ -125,6 +133,13 @@ div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-cont
 div#pie-chart-container1 > div > div > div > div > div.user-select-none.svg-container:hover {
     transform: scale(1.01);
 }
+
+div#mapbox-container1 > div > div > div > div > div.user-select-none.svg-container {
+    position: relative !important;
+    width: 34rem !important;
+    height: 25rem !important;
+}
+
 #bar-chart-container2 {
     position: relative;
     contain: content;
@@ -142,3 +157,22 @@ div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-cont
 /* div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
     transform: scale(1.01);
 } */
+
+.mapboxgl-canvas {
+    position: relative;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+.mapboxgl-ctrl-bottom-right {
+    position: absolute;
+    pointer-events: none;
+    z-index: 2;
+    right: 15px !important;
+    bottom: 15px !important;
+}
+.ycbcoloraxistick > text {
+    fill: #ffffff !important;
+}
+.cbtitle > text {
+    fill: #ffffff !important;
+}

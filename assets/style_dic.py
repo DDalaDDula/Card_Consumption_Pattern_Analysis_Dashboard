@@ -54,3 +54,9 @@ bar_plot2_styl = {
     "border-radius": "1rem",
     "scrollbar-width": "none"
 }
+
+mapbox_styl = {
+    "display": "flex",
+    "justify-content": "flex-start",
+    "align-items": "center"
+}
