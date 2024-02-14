@@ -1,9 +1,7 @@
 from dash import html, dcc
 import plotly.express as px
-import geopandas as gpd
 from shapely.geometry import shape
 from shapely.ops import unary_union
-from shapely.geometry import Point
 
 def generate_pie_chart1(df, selected_category, graph_style):
     if selected_category == 'Counts':
