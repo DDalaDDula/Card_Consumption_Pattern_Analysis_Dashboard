@@ -7,6 +7,8 @@ from graph.group2 import *
 from graph.group3 import *
 from graph.group4 import *
 
+# MAPBOX_API_KEY = "pk.eyJ1IjoiZGRhbGFkZHVsYSIsImEiOiJjbHNsMDIxMTIwNHk1MmttemI1azlhdTd1In0.Zr3dn9eBHjGgV0AQwjfEBw"
+
 # dataset & dictionary
 jg_df = pd.read_csv("dataset/jg_df.csv")
 ddc_df = pd.read_csv("dataset/ddc_df.csv")
@@ -72,17 +74,6 @@ def area_detail_page(pathname):
         
         html.Div([
             dcc.Dropdown(
-                id='pie-graph-dropdown1',
-                options=[{'label': option, 'value': option} for option in category_options1],
-                value=category_options1[0],  # 기본 선택값 설정
-                placeholder="Select",
-            ),
-            dcc.Loading(
-                id="loading-pie",
-                type="circle",
-                children=[html.Div(id='pie-chart-container1')]
-            ),
-            dcc.Dropdown(
                 id='mapbox-dropdown1',
                 options=[{'label': option, 'value': option} for option in category_options1],
                 value=category_options1[0],  # 기본 선택값 설정
@@ -93,9 +84,31 @@ def area_detail_page(pathname):
                 type="circle",
                 children=[html.Div(id='mapbox-container1')]
             ),
+            dcc.Dropdown(
+                id='mapbox-dropdown2',
+                options=[{'label': option, 'value': option} for option in category_options1],
+                value=category_options1[0],  # 기본 선택값 설정
+                placeholder="Select",
+            ),
+            dcc.Loading(
+                id="loading-pie",
+                type="circle",
+                children=[html.Div(id='mapbox-container2')]
+            ),
         ], id="group3"),
         
         html.Div([
+            dcc.Dropdown(
+                id='pie-graph-dropdown1',
+                options=[{'label': option, 'value': option} for option in category_options1],
+                value=category_options1[0],  # 기본 선택값 설정
+                placeholder="Select",
+            ),
+            dcc.Loading(
+                id="loading-pie",
+                type="circle",
+                children=[html.Div(id='pie-chart-container1')]
+            ),
             dcc.Loading(
                 id="loading-pie",
                 type="circle",
@@ -131,15 +144,6 @@ def generate_area_detail_page_callbacks(app, style_dic):
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_bar_chart1(df, selected_category, style_dic.bar_plot1_styl)
-    
-    @app.callback(Output('pie-chart-container1', 'children'),
-                  [Input('pie-graph-dropdown1', 'value'),
-                   Input("url", "pathname")])
-    def update_pie_chart(selected_category, pathname):
-        df = df_map.get(pathname, None)
-        if df is None:
-            return html.Div("페이지를 찾을 수 없습니다.")
-        return generate_pie_chart1(df, selected_category, style_dic.pie_plot1_styl)
 
     @app.callback(Output('mapbox-container1', 'children'),
                   [Input('mapbox-dropdown1', 'value'),
@@ -151,6 +155,26 @@ def generate_area_detail_page_callbacks(app, style_dic):
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
         return generate_mapbox1(df, geojson, selected_category, zoom, style_dic.mapbox_styl)
+
+    @app.callback(Output('mapbox-container2', 'children'),
+                  [Input('mapbox-dropdown2', 'value'),
+                   Input("url", "pathname")])
+    def update_mapbox2(selected_category, pathname):
+        df = df_map.get(pathname, None)
+        geojson = geo_map.get(pathname, None)
+        zoom = zoom_map.get(pathname, None)
+        if df is None:
+            return html.Div("페이지를 찾을 수 없습니다.")
+        return generate_mapbox2(df, geojson, selected_category, zoom)
+
+    @app.callback(Output('pie-chart-container1', 'children'),
+                  [Input('pie-graph-dropdown1', 'value'),
+                   Input("url", "pathname")])
+    def update_pie_chart(selected_category, pathname):
+        df = df_map.get(pathname, None)
+        if df is None:
+            return html.Div("페이지를 찾을 수 없습니다.")
+        return generate_pie_chart1(df, selected_category, style_dic.pie_plot1_styl)
 
     @app.callback(Output('bar-chart-container2', 'children'),
                   [Input("url", "pathname")])
