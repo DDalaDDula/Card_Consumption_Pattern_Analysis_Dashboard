@@ -1,13 +1,8 @@
-import dash
-from dash import dcc, html
-from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-
 from readme import * # readme page import
 from sidebar import * # navbar module import
 from summary_page import * # summary page module import
 from area_detail_page import * # detail page module import
-
 from assets import style_dic # 딕셔너리 형태의 style지정파일(python file)
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -26,7 +21,7 @@ generate_area_detail_page_callbacks(app, style_dic)
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/sum":
-        return area_detail_page(pathname)
+        return layout(style_dic) # summary_page
     
     elif pathname in ["/jg", "/ddc", "/nj"]:
         return area_detail_page(pathname)

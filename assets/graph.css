@@ -43,6 +43,14 @@ text {
     z-index: 5;
     margin: 0rem !important;
 }
+#mapbox-dropdown2 {
+    width: 8rem;
+    position: absolute !important;
+    left: 91rem;
+    top: 67.5rem;
+    z-index: 5;
+    margin: 0rem !important;
+}
 
 .Select-control {
     font-weight: bold;
@@ -89,9 +97,6 @@ text {
     justify-content: space-between !important;
     margin: 0rem 0rem 2rem 0rem !important;
     height: 25rem;
-}
-#group3 > div{
-    position: relative;
 }
 #group4 {
     display: flex !important;
@@ -145,6 +150,15 @@ div#mapbox-container1 > div > div > div > div > div.user-select-none.svg-contain
     width: 34rem !important;
     height: 25rem !important;
 }
+div#deckgl-wrapper {
+    left: 67rem !important;
+    top: 66rem !important;
+    width: 34rem !important;
+    height: 25rem !important;
+}
+#view-MapView > div > div.mapboxgl-map > div.mapboxgl-canvas-container > canvas {
+    border-radius: 1rem !important;
+}
 
 #bar-chart-container2 {
     position: relative;
@@ -160,21 +174,13 @@ div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-cont
     height: 100rem !important;
 }
 
-/* div#bar-chart-container2 > div > div > div > div > div.user-select-none.svg-container {
-    transform: scale(1.01);
-} */
-
-.mapboxgl-canvas {
+div.mapboxgl-canvas-container.mapboxgl-interactive.mapboxgl-touch-drag-pan.mapboxgl-touch-zoom-rotate > canvas {
     position: relative;
     padding: 1rem;
     border-radius: 2rem;
 }
 .mapboxgl-ctrl-bottom-right {
-    position: absolute;
-    pointer-events: none;
-    z-index: 2;
-    right: 15px !important;
-    bottom: 15px !important;
+    visibility: hidden;
 }
 .ycbcoloraxistick > text {
     fill: #ffffff !important;
