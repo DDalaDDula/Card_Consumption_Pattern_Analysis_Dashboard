@@ -6,8 +6,7 @@ from graph.group1 import *
 from graph.group2 import *
 from graph.group3 import *
 from graph.group4 import *
-
-# MAPBOX_API_KEY = "pk.eyJ1IjoiZGRhbGFkZHVsYSIsImEiOiJjbHNsMDIxMTIwNHk1MmttemI1azlhdTd1In0.Zr3dn9eBHjGgV0AQwjfEBw"
+from assets import style_dic
 
 # dataset & dictionary
 jg_df = pd.read_csv("dataset/jg_df.csv")
@@ -41,7 +40,7 @@ def area_detail_page(pathname):
             html.Hr(),
         html.Div([
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie1",
                 type="circle",
                 children=[html.Div(id='pie-chart-basic-container1')]
             ),
@@ -52,7 +51,7 @@ def area_detail_page(pathname):
                 placeholder="Select",
             ),
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie2",
                 type="circle",
                 children=[html.Div(id='pie-chart-basic-container2')]
             ),
@@ -80,7 +79,7 @@ def area_detail_page(pathname):
                 placeholder="Select",
             ),
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie3",
                 type="circle",
                 children=[html.Div(id='mapbox-container1')]
             ),
@@ -91,7 +90,7 @@ def area_detail_page(pathname):
                 placeholder="Select",
             ),
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie4",
                 type="circle",
                 children=[html.Div(id='mapbox-container2')]
             ),
@@ -105,12 +104,12 @@ def area_detail_page(pathname):
                 placeholder="Select",
             ),
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie5",
                 type="circle",
                 children=[html.Div(id='pie-chart-container1')]
             ),
             dcc.Loading(
-                id="loading-pie",
+                id="loading-pie6",
                 type="circle",
                 children=[html.Div(id='bar-chart-container2')]
             ),
@@ -121,20 +120,20 @@ def area_detail_page(pathname):
 def generate_area_detail_page_callbacks(app, style_dic):
     @app.callback(Output('pie-chart-basic-container1', 'children'), 
                   [Input("url", "pathname")])
-    def update_pie_chart_company(pathname):  # 새로운 파이 차트 함수로 변경
+    def update_pie_chart_company(pathname):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
-        return generate_basic_pie_chart1(df, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
+        return generate_basic_pie_chart1(df, style_dic.pie_plot1_styl)
 
     @app.callback(Output('pie-chart-basic-container2', 'children'), 
-                  [Input('pie-graph-dropdown2', 'value'),  # 새로운 드롭다운 추가
+                  [Input('pie-graph-dropdown2', 'value'),
                    Input("url", "pathname")])
-    def update_pie_chart_sex_age(selected_chart, pathname):  # 새로운 파이 차트 함수로 변경
+    def update_pie_chart_sex_age(selected_chart, pathname):
         df = df_map.get(pathname, None)
         if df is None:
             return html.Div("페이지를 찾을 수 없습니다.")
-        return generate_basic_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)  # 새로운 파이 차트 호출
+        return generate_basic_pie_chart2(df, selected_chart, style_dic.pie_plot1_styl)
 
     @app.callback(Output('bar-chart-container1', 'children'),
                   [Input('bar-graph-dropdown', 'value'),

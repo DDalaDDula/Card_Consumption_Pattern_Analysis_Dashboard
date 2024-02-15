@@ -9,7 +9,7 @@ def generate_pie_chart1(df, selected_category, graph_style):
             names=df['city_s'].value_counts().index,
             values=df['city_s'].value_counts().values,
             title='Ratio of Area payments',
-            color_discrete_sequence=px.colors.cyclical.Twilight_r,  # 색상 설정
+            color_discrete_sequence=px.colors.sequential.Agsunset_r,  # 색상 설정
             custom_data=[df['city_s'].value_counts().values],  # 추가 정보를 custom_data로 설정
             labels={'customdata': 'Count'},  # custom_data에 대한 레이블 설정
             hole=0.4
@@ -23,7 +23,7 @@ def generate_pie_chart1(df, selected_category, graph_style):
                     names=cost_sum_by_city.index, 
                     values=cost_sum_by_city.values,
                     title='Ratio of Area Cost ',  # 파이 차트 제목 설정
-                    color_discrete_sequence=px.colors.cyclical.Edge,  # 색상 설정
+                    color_discrete_sequence=px.colors.sequential.Agsunset,  # 색상 설정
                     custom_data=[cost_sum_by_city.values],  # 추가 정보를 custom_data로 설정
                     labels={'customdata': 'Total Cost'},  # custom_data에 대한 레이블 설정
                     hole=0.4
@@ -50,7 +50,8 @@ def generate_bar_chart2(df, graph_style):
     fig = px.bar(
         x=df['데이터건수'],
         y=df['표준산업분류(중)'],
-        color_continuous_scale='Agsunset',  # reverse 하고싶으면 "_r" 붙이기
+        color=df['데이터건수'],
+        color_continuous_scale=px.colors.sequential.Agsunset,
     )
 
     # 레이아웃 업데이트
@@ -62,7 +63,7 @@ def generate_bar_chart2(df, graph_style):
         ),
         yaxis_title='',
         title='Count of Standard Industry',
-        margin=dict(t=100), 
+        margin=dict(t=100, l=0), 
         template='plotly_dark',  # 사용할 템플릿
         font=dict(
             family='Arial, sans-serif',  # 사용할 폰트 설정
@@ -71,6 +72,7 @@ def generate_bar_chart2(df, graph_style):
     )
 
     fig.update_traces(marker_line_color= "grey", marker_line_width = 2)
+    fig.update_layout(coloraxis_showscale=False)
     return html.Div([
         dcc.Graph(
             id='bar-chart2',
