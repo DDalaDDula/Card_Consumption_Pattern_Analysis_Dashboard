@@ -70,7 +70,7 @@ def generate_mapbox2(df, geojson, selected_category, zoom):
         extruded = True,
         get_elevation = 'Scaling_Counts' if selected_category == 'Counts' else 'Scaling_Costs',
         elevation_scale = 2000 if zoom == 12 else 3000 if zoom == 10.5 else 5000,
-        opacity=0.7,
+        opacity=0.8,
         pickable=True, # 지도와 interactive 한 동작 on
         auto_highlight=True # 마우스 오버(hover) 시 박스 출력
     )
